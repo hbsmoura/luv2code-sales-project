@@ -1,1 +1,24 @@
-<p>sales-person-list works!</p>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Sales Volume</th>
+            <th scope="col">Met Quota</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of salesPersonList">
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.salesVolume | currency: 'USD' }}</td>
+            <td>
+                <span *ngIf="person.salesVolume >= 60000; then yesBlock else noBlock"></span>
+                <ng-template #yesBlock>Yes</ng-template>
+                <ng-template #noBlock>No</ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>
